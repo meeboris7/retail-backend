@@ -11,9 +11,9 @@ const initialMockData: MockData = {
     { id: 'P005', name: 'Monitor Arm', currentQuantity: 25, reorderPoint: 40 },
   ],
   suppliers: [
-    { id: 'S001', name: 'Tech Distributor A', leadTimeDays: 7, reliability: 0.98, costFactor: 1.0, email: 'supplierA@example.com' },
-    { id: 'S002', name: 'Global Components', leadTimeDays: 14, reliability: 0.90, costFactor: 0.95, email: 'supplierB@example.com' },
-    { id: 'S003', name: 'Electro Supply Co.', leadTimeDays: 10, reliability: 0.95, costFactor: 1.05, email: 'supplierC@example.com' },
+    { id: 'S001', name: 'Tech Distributor A', leadTimeDays: 7, reliability: 0.98, costFactor: 1.0, email: 'nyaksha06@gmail.com' },
+    { id: 'S002', name: 'Global Components', leadTimeDays: 14, reliability: 0.90, costFactor: 0.95, email: 'nyaksha06@gmail.com' },
+    { id: 'S003', name: 'Electro Supply Co.', leadTimeDays: 10, reliability: 0.95, costFactor: 1.05, email: 'nyaksha06@gmail.com' },
   ],
   purchaseOrders: [
     // Example of a delivered PO (this will be filtered out by the API)
