@@ -16,6 +16,19 @@ const initialMockData: MockData = {
     { id: 'S003', name: 'Electro Supply Co.', leadTimeDays: 10, reliability: 0.95, costFactor: 1.05, email: 'supplierC@example.com' },
   ],
   purchaseOrders: [
+    // Example of a delivered PO (this will be filtered out by the API)
+    {
+      poId: 'PO-20250620-001',
+      productId: 'P003',
+      supplierId: 'S001',
+      quantityOrdered: 100,
+      orderDate: '2025-06-20T09:00:00Z',
+      expectedDeliveryDate: '2025-06-27T09:00:00Z',
+      actualDeliveryDate: '2025-06-26T15:00:00Z', // <<< ADD THIS LINE
+      status: 'delivered',
+      chosenSupplierReason: 'Met demand quickly',
+      emailNotificationStatus: 'sent',
+    },
     // Example of a pending PO
     {
       poId: 'PO-20250701-001',
@@ -23,20 +36,20 @@ const initialMockData: MockData = {
       supplierId: 'S001',
       quantityOrdered: 40,
       orderDate: '2025-07-01T09:00:00Z',
-      expectedDeliveryDate: '2025-07-08T09:00:00Z',
-      status: 'pending', // Assume still pending delivery
+      expectedDeliveryDate: '2025-07-15T09:00:00Z', // Adjusted for future date to be pending as of current time
+      status: 'pending',
       chosenSupplierReason: 'Fastest delivery',
       emailNotificationStatus: 'sent',
     },
-    // Example of a delayed PO (past expected delivery date as of current date 2025-07-08)
+    // Example of a delayed PO (past expected delivery date as of current date 2025-07-09)
     {
       poId: 'PO-20250701-002',
       productId: 'P002',
       supplierId: 'S002',
       quantityOrdered: 20,
       orderDate: '2025-07-01T10:00:00Z',
-      expectedDeliveryDate: '2025-07-08T10:00:00Z', // Now it's 2025-07-09 IST, so it should be delayed
-      status: 'delayed',
+      expectedDeliveryDate: '2025-07-07T10:00:00Z', // Set to a past date to ensure it's delayed
+      status: 'delayed', // It might initially be pending, but system calculates to delayed
       chosenSupplierReason: 'Best cost',
       emailNotificationStatus: 'sent',
     },
@@ -58,5 +71,5 @@ export const resetMockData = () => {
 
 // Helper for generating unique IDs
 export const generateId = (prefix: string) => {
-  return `${prefix}-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.random().toString(36).substr(2, 3)}`;
+  return `${prefix}-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.random().toString(36).substr(2, 4)}`; // Increased length for less collision
 };

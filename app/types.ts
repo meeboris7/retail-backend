@@ -24,6 +24,8 @@ export interface PurchaseOrder {
   orderDate: string; // ISO string
   expectedDeliveryDate: string; // ISO string
   status: 'pending' | 'shipped' | 'delivered' | 'delayed';
+  // >>> ADD THIS NEW FIELD <<<
+  actualDeliveryDate?: string; // ISO string, optional, for delivered POs
   chosenSupplierReason: string;
   // New fields for email status
   emailNotificationStatus?: 'sent' | 'failed' | 'not_attempted';
@@ -43,7 +45,7 @@ export interface PoStatusReport {
   po_id: string;
   product_id: string;
   supplier_id: string;
-  current_status: 'pending' | 'shipped' | 'delivered' | 'delayed';
+  current_status: 'pending' | 'shipped' | 'delivered' | 'delayed'; // 'delivered' should ideally not appear if filtered
   days_overdue: number | null;
   message: string;
 }
