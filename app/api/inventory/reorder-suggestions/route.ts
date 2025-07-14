@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     products.forEach(product => {
       // Simple reorder logic: if current quantity is below reorder point
       if (product.currentQuantity < product.reorderPoint) {
-        const suggestedOrderQuantity = product.reorderPoint - product.currentQuantity + 10; // Order to reach reorder point + buffer
+        const suggestedOrderQuantity = product.reorderPoint - product.currentQuantity ; // Order to reach reorder point + buffer
         reorderSuggestions.push({
           product_id: product.id,
           product_name: product.name,
